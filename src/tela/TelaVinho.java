@@ -4,7 +4,9 @@
  */
 package tela;
 
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
+import principal.Principal;
 
 /**
  *
@@ -42,7 +44,7 @@ public class TelaVinho extends javax.swing.JFrame {
         jtf_tipouva = new javax.swing.JTextField();
         jToggleButton1 = new javax.swing.JToggleButton();
         jtf_idproduto = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jtf_datavenda = new javax.swing.JFormattedTextField();
         jtf_anosafra = new javax.swing.JFormattedTextField();
         jtf_qntd = new javax.swing.JFormattedTextField();
 
@@ -67,7 +69,7 @@ public class TelaVinho extends javax.swing.JFrame {
 
         jLabel7.setText("QUANTIDADE");
 
-        jLabel8.setText("DIA DA VENDA");
+        jLabel8.setText("DATA DA VENDA");
 
         jToggleButton1.setText("INSERIR");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -82,10 +84,10 @@ public class TelaVinho extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jtf_datavenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jtf_datavenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
+                jtf_datavendaActionPerformed(evt);
             }
         });
 
@@ -101,36 +103,48 @@ public class TelaVinho extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtf_tipouva)
-                                    .addComponent(jtf_valor)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(jtf_idproduto, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFormattedTextField2)
+                                    .addComponent(jtf_datavenda)
                                     .addComponent(jtf_anosafra)
-                                    .addComponent(jtf_qntd, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))))
+                                    .addComponent(jtf_qntd)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jtf_tipouva, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jtf_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jtf_idproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(189, 189, 189)
                         .addComponent(jLabel1)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,8 +165,8 @@ public class TelaVinho extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jtf_tipouva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_tipouva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -164,7 +178,7 @@ public class TelaVinho extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtf_datavenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jToggleButton1)
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -176,35 +190,52 @@ public class TelaVinho extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         
         char ID_produto[] = new char[5];
-        int aux1 = 1, aux2 = 0, aux3 = 0;
+        String idproduto;
+        String descricao;
+        String TipoUva;
+        int AnoSafra;
+        int quantidade;
+        LocalDate DataVenda;
         
         ID_produto = jtf_idproduto.getText().toCharArray();
-        
-        while(aux1 == 1){
+           
+        if(ID_produto[2]%2 == 0 || ID_produto[4]%2 != 0){
             
             if(ID_produto[2]%2 == 0){
-                aux2 = 1;
-            }else if(ID_produto[4]%2 != 0){
-                aux3 = 1;
-            }else{
-                aux1 = 0;
-            }
-            
-            if(aux2 == 1){
                 JOptionPane.showMessageDialog(null, "O terceiro caractere deve ser um número ímpar", "ERRO", JOptionPane.WARNING_MESSAGE, null);
             }
             
-            if(aux3 == 1){
-                
+            if(ID_produto[4]%2 != 0){
+                JOptionPane.showMessageDialog(null, "O terceiro caractere deve ser um número par", "ERRO", JOptionPane.WARNING_MESSAGE, null);
             }
+            
+        }else{
+            
+            idproduto = jtf_idproduto.getText();
+            
+            descricao = txtA_descricao.getText();
+            String linhas[] = descricao.split("\n");;
+            descricao = "";
+            for (String linha : linhas) {
+            
+                descricao = descricao.concat(linha) + " ";
+            }
+            
+            TipoUva = jtf_tipouva.getText();
+            AnoSafra = Integer.parseInt(jtf_anosafra.getText());
+            quantidade = Integer.parseInt(jtf_qntd.getText());
+            DataVenda = LocalDate.parse(jtf_datavenda.getText());
+            
+            Principal.verifica = 1;
             
         }
         
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+    private void jtf_datavendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_datavendaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+    }//GEN-LAST:event_jtf_datavendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,7 +273,6 @@ public class TelaVinho extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -254,6 +284,7 @@ public class TelaVinho extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JFormattedTextField jtf_anosafra;
+    private javax.swing.JFormattedTextField jtf_datavenda;
     private javax.swing.JFormattedTextField jtf_idproduto;
     private javax.swing.JFormattedTextField jtf_qntd;
     private javax.swing.JTextField jtf_tipouva;

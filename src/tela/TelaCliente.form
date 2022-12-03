@@ -42,29 +42,26 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jlb_idcliente" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlb_nome" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlb_email" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlb_telefone" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlb_nome" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jlb_email" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jtf_idcliente" alignment="0" pref="150" max="32767" attributes="0"/>
-                                          <Component id="jtf_nome" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jtf_email" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                      <Component id="jtf_telefone" min="-2" pref="149" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jtf_idcliente" alignment="0" pref="150" max="32767" attributes="0"/>
+                                  <Component id="jtf_nome" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtf_email" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jlb_endereco" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jtf_endereco" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <Component id="jlb_telefone" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jtf_telefone" min="-2" pref="149" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -73,7 +70,7 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="164" max="-2" attributes="0"/>
+              <Component id="jbt_inserir" min="-2" pref="164" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -104,12 +101,12 @@
                   <Component id="jtf_telefone" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jlb_endereco" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtf_endereco" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jtf_endereco" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlb_endereco" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="jbt_inserir" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -154,12 +151,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtf_endereco">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jbt_inserir">
       <Properties>
         <Property name="text" type="java.lang.String" value="INSERIR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbt_inserirActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jtf_telefone">

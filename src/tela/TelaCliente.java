@@ -1,5 +1,7 @@
 package tela;
 
+import principal.Principal;
+
 public class TelaCliente extends javax.swing.JFrame {
 
     /**
@@ -29,7 +31,7 @@ public class TelaCliente extends javax.swing.JFrame {
         jtf_nome = new javax.swing.JTextField();
         jtf_email = new javax.swing.JTextField();
         jtf_endereco = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jbt_inserir = new javax.swing.JButton();
         jtf_telefone = new javax.swing.JFormattedTextField();
 
         jFormattedTextField1.setText("jFormattedTextField1");
@@ -48,10 +50,10 @@ public class TelaCliente extends javax.swing.JFrame {
 
         jlb_endereco.setText("ENDEREÇO");
 
-        jButton1.setText("INSERIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbt_inserir.setText("INSERIR");
+        jbt_inserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbt_inserirActionPerformed(evt);
             }
         });
 
@@ -76,27 +78,26 @@ public class TelaCliente extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jlb_idcliente)
-                                    .addComponent(jlb_nome)
-                                    .addComponent(jlb_email)
-                                    .addComponent(jlb_telefone))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jtf_idcliente, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                            .addComponent(jtf_nome)
-                                            .addComponent(jtf_email)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addComponent(jtf_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jlb_nome, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jlb_email, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtf_idcliente, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(jtf_nome)
+                                    .addComponent(jtf_email)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jlb_endereco)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtf_endereco)))))
+                                .addComponent(jtf_endereco))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(jlb_telefone)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtf_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(96, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbt_inserir, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(117, 117, 117))
         );
         layout.setVerticalGroup(
@@ -121,24 +122,25 @@ public class TelaCliente extends javax.swing.JFrame {
                     .addComponent(jlb_telefone)
                     .addComponent(jtf_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlb_endereco)
-                    .addComponent(jtf_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtf_endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlb_endereco))
                 .addGap(41, 41, 41)
-                .addComponent(jButton1)
+                .addComponent(jbt_inserir)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbt_inserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_inserirActionPerformed
         int ID_cliente = Integer.parseInt(jtf_idcliente.getText());
         String nome = jtf_nome.getText();
         String email = jtf_email.getText();
         String telefone = jtf_telefone.getText();
         String endereco = jtf_endereco.getText();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Principal.verifica = 1;
+    }//GEN-LAST:event_jbt_inserirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,8 +178,8 @@ public class TelaCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JButton jbt_inserir;
     private javax.swing.JLabel jlb_cliente;
     private javax.swing.JLabel jlb_email;
     private javax.swing.JLabel jlb_endereco;
