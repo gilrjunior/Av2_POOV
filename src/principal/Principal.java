@@ -91,6 +91,46 @@ public class Principal {
                 telamostrar.setVisible(false);
                 
             break;
+            case 5:
+                
+                TelaAtualizarVinho telaattvinho = new TelaAtualizarVinho();
+                telaattvinho.setVisible(true);
+                while(opc!= 0){
+                   if(Principal.verifica == 1){
+                       opc = 0;
+                       JOptionPane.showMessageDialog(null, "VINHO ATUALIZADO");
+                   }
+                }
+                Principal.verifica = 0;
+                telaattvinho.setVisible(false);
+            break;
+            case 6:
+                
+                TelaMostraClientes telamostrarC = new TelaMostraClientes();
+                telamostrarC.setVisible(true);
+                while(opc!= 0){
+                   if(Principal.verifica == 1){
+                       opc = 0;
+                       JOptionPane.showMessageDialog(null, "RETORNANDO AO MENU");
+                   }
+                }
+                Principal.verifica = 0;
+                telamostrarC.setVisible(false);
+                
+            break;
+            case 7:
+                
+              TelaPeriodo telaperiodo = new TelaPeriodo();
+                telaperiodo.setVisible(true);
+                while(opc!= 0){
+                   if(Principal.verifica == 1){
+                       opc = 0;
+                       JOptionPane.showMessageDialog(null, "RETORNANDO AO MENU");
+                   }
+                }
+                Principal.verifica = 0;
+                telaperiodo.setVisible(false);  
+                
             
         }
             
