@@ -90,7 +90,7 @@ public class Vinho {
 
     @Override
     public String toString() {
-        return "idProduto=" + idProduto + ", valor=" + valor + ", descricao=" + descricao + ", tipoDaUva=" + tipoDaUva + ", anoDaSafra=" + anoDaSafra + ", quantidade=" + quantidade + ", diaDaVenda=" + diaDaVenda;
+        return "idProduto = " + idProduto + ", valor = " + valor + ", descricao = " + descricao + ", tipoDaUva = " + tipoDaUva + ", anoDaSafra = " + anoDaSafra + ", quantidade = " + quantidade + ", diaDaVenda = " + diaDaVenda+ "\n";
     }
     
     

@@ -5,6 +5,7 @@
 package tela;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import principal.Principal;
 
@@ -84,14 +85,22 @@ public class TelaVinho extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        jtf_datavenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            jtf_datavenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jtf_datavenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtf_datavendaActionPerformed(evt);
             }
         });
 
-        jtf_anosafra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        try {
+            jtf_anosafra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jtf_qntd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
@@ -224,7 +233,8 @@ public class TelaVinho extends javax.swing.JFrame {
             TipoUva = jtf_tipouva.getText();
             AnoSafra = Integer.parseInt(jtf_anosafra.getText());
             quantidade = Integer.parseInt(jtf_qntd.getText());
-            DataVenda = LocalDate.parse(jtf_datavenda.getText());
+            DataVenda = LocalDate.parse(jtf_datavenda.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
             
             Principal.verifica = 1;
             

@@ -34,7 +34,12 @@ public class Principal {
                 
                 TelaCliente telacliente = new TelaCliente();
                 telacliente.setVisible(true);
-                while(Principal.verifica != 1);
+                while(opc!= 0){
+                   if(Principal.verifica == 1){
+                       opc = 0;
+                       JOptionPane.showMessageDialog(null, "CLIENTE INSERIDO");
+                   }
+                }
                 Principal.verifica = 0;
                 telacliente.setVisible(false);
                 
@@ -44,12 +49,48 @@ public class Principal {
                 
                 TelaVinho telavinho = new TelaVinho();
                 telavinho.setVisible(true);
-                while(Principal.verifica != 1){
-                    System.out.println("");
+                while(opc!= 0){
+                   if(Principal.verifica == 1){
+                       opc = 0;
+                       JOptionPane.showMessageDialog(null, "VINHO INSERIDO");
+                   }
                 }
                 Principal.verifica = 0;
                 telavinho.setVisible(false);
+                
+            break;
             
+            case 3:
+                
+                TelaVincularVinhos telavincular = new TelaVincularVinhos();
+                telavincular.setVisible(true);
+                while(opc!= 0){
+                   if(Principal.verifica == 1){
+                       opc = 0;
+                       JOptionPane.showMessageDialog(null, "VINHOS VINCULADOS");
+                   }
+                   if(Principal.verifica == 2){
+                       opc = 0;
+                   }
+                }
+                Principal.verifica = 0;
+                telavincular.setVisible(false);
+                
+            break;
+            case 4:
+                
+                TelaMostrar telamostrar = new TelaMostrar();
+                telamostrar.setVisible(true);
+                while(opc!= 0){
+                   if(Principal.verifica == 1){
+                       opc = 0;
+                       JOptionPane.showMessageDialog(null, "RETORNANDO AO MENU");
+                   }
+                }
+                Principal.verifica = 0;
+                telamostrar.setVisible(false);
+                
+            break;
             
         }
             
