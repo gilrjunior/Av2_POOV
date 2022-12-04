@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.table.DefaultTableModel;
 import principal.Principal;
+import principal.TelaPrincipal;
 
 /**
  *
@@ -29,7 +30,7 @@ public class TelaMostrar extends javax.swing.JFrame {
     public TelaMostrar() {
         initComponents();
         
-        dtm_tabela = new DefaultTableModel(null, new String[]{"ID", "Valor", "Descrição", "Tipo da Uva", "Ano da Safra", "Quantidade", "Dia da Venda"});
+        dtm_tabela = (DefaultTableModel) jTable1.getModel();
         
     }
 
@@ -179,8 +180,8 @@ public class TelaMostrar extends javax.swing.JFrame {
             
                     }
                     
-                    recebe.close();
-                    envia.close();
+                    socket.close();
+
 
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());
@@ -189,8 +190,9 @@ public class TelaMostrar extends javax.swing.JFrame {
     }//GEN-LAST:event_JBT_BUSCARActionPerformed
 
     private void JBT_SAIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_SAIRActionPerformed
-        TelaMostrar.this.dispose();
-        Principal.verifica = 1;
+        this.dispose();
+        TelaPrincipal tela = new TelaPrincipal();
+        tela.setVisible(true);
     }//GEN-LAST:event_JBT_SAIRActionPerformed
 
     /**

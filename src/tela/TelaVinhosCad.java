@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.table.DefaultTableModel;
 import principal.Principal;
+import principal.TelaPrincipal;
 
 /**
  *
@@ -25,20 +26,19 @@ public class TelaVinhosCad extends javax.swing.JFrame {
      */
     
     DefaultTableModel dtm_tabela;
+    int qntd = 0;
+    String idproduto;
+    float valor;
+    String descricao;
+    String TipoUva;
+    int AnoSafra;
+    int quantidade;
+    String DataVenda;
     
     public TelaVinhosCad() {
         initComponents();
         
-        dtm_tabela = new DefaultTableModel(null, new String[]{"ID", "Valor", "Descrição", "Tipo da Uva", "Ano da Safra", "Quantidade", "Dia da Venda"});
-        
-        int qntd = 0;
-        String idproduto;
-        float valor;
-        String descricao;
-        String TipoUva;
-        int AnoSafra;
-        int quantidade;
-        String DataVenda;
+        dtm_tabela = (DefaultTableModel) jTable1.getModel() ;
         
         Socket socket;
             
@@ -67,8 +67,8 @@ public class TelaVinhosCad extends javax.swing.JFrame {
             
                     }
                     
-                    recebe.close();
-                    envia.close();
+                    socket.close();
+
 
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());
@@ -152,8 +152,9 @@ public class TelaVinhosCad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBT_SAIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_SAIRActionPerformed
-        TelaVinhosCad.this.dispose();
-        Principal.verifica = 1;
+        this.dispose();
+        TelaPrincipal tela = new TelaPrincipal();
+        tela.setVisible(true);
     }//GEN-LAST:event_JBT_SAIRActionPerformed
 
     /**

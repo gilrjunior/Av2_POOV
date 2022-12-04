@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import principal.Principal;
+import principal.TelaPrincipal;
 
 /**
  *
@@ -259,14 +260,17 @@ public class TelaVinho extends javax.swing.JFrame {
 
                     envia.flush();
                     
-                    recebe.close();
-                    envia.close();
+                    socket.close();
+                    
+                    JOptionPane.showMessageDialog(null, "VINHO INSERIDO");
 
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());
                 }
             
-            Principal.verifica = 1;
+            this.dispose();
+            TelaPrincipal tela = new TelaPrincipal();
+            tela.setVisible(true);
             
         }
         

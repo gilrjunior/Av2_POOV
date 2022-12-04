@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import javax.swing.JOptionPane;
 import principal.Principal;
+import principal.TelaPrincipal;
 
 public class TelaVincularVinhos extends javax.swing.JFrame {
 
@@ -122,19 +124,23 @@ public class TelaVincularVinhos extends javax.swing.JFrame {
 
                     envia.flush();
                     
-                    recebe.close();
-                    envia.close();
+                    socket.close();
 
+                    JOptionPane.showMessageDialog(null, "VINHO VINCULADO");
+                    
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());
                 }        
         
-        Principal.verifica = 1;
+        this.dispose();
+        TelaPrincipal tela = new TelaPrincipal();
+        tela.setVisible(true);
     }//GEN-LAST:event_jbt_vincularActionPerformed
 
     private void jbt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_sairActionPerformed
-       TelaVincularVinhos.this.dispose();
-       Principal.verifica = 2;
+        this.dispose();
+        TelaPrincipal tela = new TelaPrincipal();
+        tela.setVisible(true);
     }//GEN-LAST:event_jbt_sairActionPerformed
 
     /**

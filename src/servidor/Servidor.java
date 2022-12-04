@@ -6,10 +6,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.Collator;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import vinho.Vinho;
@@ -23,6 +25,11 @@ public class Servidor {
         Map<Cliente, ArrayList<Vinho>> Banco = new HashMap<>();
         ArrayList <Vinho> vinhos = new ArrayList();
         ArrayList <Cliente> listaordenadaC = new ArrayList();
+        int ID_cliente;
+        String nome;
+        String email;
+        String telefone;
+        String endereco;
         
         try{          
             ServerSocket serverSocket = new ServerSocket(8000);
@@ -33,35 +40,24 @@ public class Servidor {
                 ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
                
                 opc = recebe.readInt();
+                System.out.println(opc);
                 
                 switch(opc){
                     
                     case 1:
                     
-                        int ID_cliente = recebe.readInt();
-                        String nome = recebe.readUTF();
-                        String email = recebe.readUTF();
-                        String telefone = recebe.readUTF();
-                        String endereco = recebe.readUTF();
+                        ID_cliente = recebe.readInt();
+                        nome = recebe.readUTF();
+                        email = recebe.readUTF();
+                        telefone = recebe.readUTF();
+                        endereco = recebe.readUTF();
                         
                         Cliente cliente = new Cliente(ID_cliente, nome, email, telefone, endereco);
-                        if(listaordenadaC.size() == 0){
-                            
-                            listaordenadaC.add(cliente);
-                            
-                        }else{
-                            for(int i = 0; i < listaordenadaC.size(); i++){
-                                if(cliente.getNome().compareTo(listaordenadaC.get(i).getNome()) < 0){
-                                    listaordenadaC.add(i, cliente);
-                                }else{
-                                    listaordenadaC.add(cliente);
-                                }
-                            }
                         
-                        }
+                        listaordenadaC.add(cliente);
+                        Banco.put(cliente, new ArrayList());   
                         
-                        Banco.put(cliente, new ArrayList());
-                                                 
+          
                     break;
                     
                     case 2: 
@@ -76,6 +72,7 @@ public class Servidor {
                         
                         vinhos.add(new Vinho(idproduto, valor, descricao, TipoUva, AnoSafra, quantidade, DataVenda));
                         
+
                     break;
                     
                     case 3:
@@ -93,7 +90,8 @@ public class Servidor {
                                 }   
                             }
                         }
-                        
+                       
+                                                
                     break;
                     
                     case 4:
@@ -116,8 +114,9 @@ public class Servidor {
                                }   
 
                             }
-                        } 
-                        
+                        }
+                      
+
                     break;
                     
                     case 5:
@@ -149,12 +148,14 @@ public class Servidor {
 
                             }
                         }
+                       
                         
                     break;
                     
                     case 6:
                         
                        envia.writeInt(listaordenadaC.size());
+                       envia.flush();
                        
                        for(Cliente clientee : listaordenadaC){
                            
@@ -166,7 +167,8 @@ public class Servidor {
                            envia.flush();
                            
                        }
-                    
+                      
+                       
                     break;
                     
                     case 7:
@@ -177,18 +179,20 @@ public class Servidor {
                            
                            if(vinho.getIdProduto().equals(idvinho)){
                                
-                               Period periodo = Period.between(vinho.getDiaDaVenda(), LocalDate.now());
+                               Period periodo = Period.between(vinho.getDiaDaVenda(), LocalDate.parse(LocalDate.now().toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                                envia.writeInt(periodo.getDays());
                                
                            }
                            
                        }
+                       
+                       
                         
                     break;
                     
                     case 8:
-                        
-                        envia.writeInt(vinhos.size());
+                        if(!vinhos.isEmpty()){
+                                envia.writeInt(vinhos.size());
                                 for(Vinho vinho: vinhos){ 
                                     envia.writeUTF(vinho.getIdProduto());
                                     envia.writeFloat(vinho.getValor());
@@ -199,6 +203,10 @@ public class Servidor {
                                     envia.writeUTF(vinho.getDiaDaVenda().toString());
                                     envia.flush();
                                }
+                        }else{
+                             envia.writeInt(0);
+                        }
+                         
                         
                     break;
                     
@@ -224,6 +232,8 @@ public class Servidor {
 
                             }
                         }
+                        
+                        
                         
                     break;
                     

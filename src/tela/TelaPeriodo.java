@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import javax.swing.JOptionPane;
 import principal.Principal;
+import principal.TelaPrincipal;
 
 /**
  *
@@ -115,7 +116,9 @@ public class TelaPeriodo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_sairActionPerformed
-        Principal.verifica = 1;
+        this.dispose();
+        TelaPrincipal tela = new TelaPrincipal();
+        tela.setVisible(true);
     }//GEN-LAST:event_jbt_sairActionPerformed
 
     private void jbt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_buscarActionPerformed
@@ -153,8 +156,8 @@ public class TelaPeriodo extends javax.swing.JFrame {
                     
                     jtf_dias.setText(Integer.toString(recebe.readInt()));
                     
-                    recebe.close();
-                    envia.close();
+                    socket.close();
+
 
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());

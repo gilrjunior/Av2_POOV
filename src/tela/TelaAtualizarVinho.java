@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import principal.Principal;
+import principal.TelaPrincipal;
 
 /**
  *
@@ -48,7 +49,6 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jtf_valor = new javax.swing.JTextField();
         jtf_tipouva = new javax.swing.JTextField();
-        jbt_atualizar = new javax.swing.JToggleButton();
         jtf_idproduto = new javax.swing.JFormattedTextField();
         jtf_datavenda = new javax.swing.JFormattedTextField();
         jtf_anosafra = new javax.swing.JFormattedTextField();
@@ -57,6 +57,7 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jtf_idcliente = new javax.swing.JTextField();
+        jbt_atualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,13 +81,6 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
         jLabel7.setText("QUANTIDADE");
 
         jLabel8.setText("DATA DA VENDA");
-
-        jbt_atualizar.setText("ATUALIZAR");
-        jbt_atualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbt_atualizarActionPerformed(evt);
-            }
-        });
 
         try {
             jtf_idproduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#L#U#")));
@@ -123,6 +117,13 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
         jLabel9.setText("ID CLIENTE");
 
         jLabel10.setText("INFORME OS ID'S PARA BUSCAR");
+
+        jbt_atualizar.setText("ATUALIZAR");
+        jbt_atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbt_atualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,15 +170,17 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
                                 .addComponent(jtf_valor, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jtf_idcliente))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(jbt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(189, 189, 189)
                         .addComponent(jLabel1)))
                 .addGap(68, 68, 68))
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jLabel10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jbt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -220,85 +223,13 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jtf_datavenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbt_atualizar)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbt_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_atualizarActionPerformed
-
-        char ID_produto[] = new char[5];
-        String idproduto;
-        int idcliente;
-        float valor;
-        String descricao;
-        String TipoUva;
-        int AnoSafra;
-        int quantidade;
-        String DataVenda;
-        
-        ID_produto = jtf_idproduto.getText().toCharArray();
-           
-        if(ID_produto[2]%2 == 0 || ID_produto[4]%2 != 0){
-            
-            if(ID_produto[2]%2 == 0){
-                JOptionPane.showMessageDialog(null, "O terceiro caractere deve ser um número ímpar", "ERRO", JOptionPane.WARNING_MESSAGE, null);
-            }
-            
-            if(ID_produto[4]%2 != 0){
-                JOptionPane.showMessageDialog(null, "O terceiro caractere deve ser um número par", "ERRO", JOptionPane.WARNING_MESSAGE, null);
-            }
-            
-        }else{
-            
-            idcliente = Integer.parseInt(jtf_idcliente.getText());
-            idproduto = jtf_idproduto.getText();
-            valor = Float.parseFloat(jtf_valor.getText());
-            descricao = txtA_descricao.getText();
-            String linhas[] = descricao.split("\n");;
-            descricao = "";
-            for (String linha : linhas) {
-            
-                descricao = descricao.concat(linha) + " ";
-            }
-            
-            TipoUva = jtf_tipouva.getText();
-            AnoSafra = Integer.parseInt(jtf_anosafra.getText());
-            quantidade = Integer.parseInt(jtf_qntd.getText());
-            DataVenda = jtf_datavenda.getText();
-
-            Socket socket;
-            
-                try{           
-                    socket = Conexao.Conecta();
-                    ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
-                    ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
-
-                    envia.writeInt(5);
-                    envia.writeInt(idcliente);
-                    envia.writeUTF(idproduto);
-                    envia.writeFloat(valor);
-                    envia.writeUTF(descricao);
-                    envia.writeUTF(TipoUva);
-                    envia.writeInt(AnoSafra);
-                    envia.writeInt(quantidade);
-                    envia.writeUTF(DataVenda);
-
-                    envia.flush();
-                    
-                    recebe.close();
-                    envia.close();
-
-                }catch (IOException e){
-                    System.out.println("Erro: " + e.getMessage());
-                }
-        
-            Principal.verifica = 1;
-        }
-    }//GEN-LAST:event_jbt_atualizarActionPerformed
 
     private void jtf_datavendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_datavendaActionPerformed
         // TODO add your handling code here:
@@ -361,8 +292,7 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
                     jtf_qntd.setText(Integer.toString(quantidade));
                     jtf_datavenda.setText(DataVenda);
                     
-                    recebe.close();
-                    envia.close();
+                    socket.close();
                     
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());
@@ -371,6 +301,81 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_JBT_BUSCARActionPerformed
+
+    private void jbt_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_atualizarActionPerformed
+        
+        char ID_produto[] = new char[5];
+        String idproduto;
+        int idcliente;
+        float valor;
+        String descricao;
+        String TipoUva;
+        int AnoSafra;
+        int quantidade;
+        String DataVenda;
+        
+        ID_produto = jtf_idproduto.getText().toCharArray();
+           
+        if(ID_produto[2]%2 == 0 || ID_produto[4]%2 != 0){
+            
+            if(ID_produto[2]%2 == 0){
+                JOptionPane.showMessageDialog(null, "O terceiro caractere deve ser um número ímpar", "ERRO", JOptionPane.WARNING_MESSAGE, null);
+            }
+            
+            if(ID_produto[4]%2 != 0){
+                JOptionPane.showMessageDialog(null, "O terceiro caractere deve ser um número par", "ERRO", JOptionPane.WARNING_MESSAGE, null);
+            }
+            
+        }else{
+            
+            idcliente = Integer.parseInt(jtf_idcliente.getText());
+            idproduto = jtf_idproduto.getText();
+            valor = Float.parseFloat(jtf_valor.getText());
+            descricao = txtA_descricao.getText();
+            String linhas[] = descricao.split("\n");;
+            descricao = "";
+            for (String linha : linhas) {
+            
+                descricao = descricao.concat(linha) + " ";
+            }
+            
+            TipoUva = jtf_tipouva.getText();
+            AnoSafra = Integer.parseInt(jtf_anosafra.getText());
+            quantidade = Integer.parseInt(jtf_qntd.getText());
+            DataVenda = jtf_datavenda.getText();
+
+            Socket socket;
+            
+                try{           
+                    socket = Conexao.Conecta();
+                    ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
+                    ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
+
+                    envia.writeInt(5);
+                    envia.writeInt(idcliente);
+                    envia.writeUTF(idproduto);
+                    envia.writeFloat(valor);
+                    envia.writeUTF(descricao);
+                    envia.writeUTF(TipoUva);
+                    envia.writeInt(AnoSafra);
+                    envia.writeInt(quantidade);
+                    envia.writeUTF(DataVenda);
+
+                    envia.flush();
+                    
+                    socket.close();
+                    
+                    JOptionPane.showMessageDialog(null, "VINHO ATUALIZADO");
+
+                }catch (IOException e){
+                    System.out.println("Erro: " + e.getMessage());
+                }
+        
+                this.dispose();
+                TelaPrincipal tela = new TelaPrincipal();
+                tela.setVisible(true);
+        }
+    }//GEN-LAST:event_jbt_atualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,7 +426,7 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jbt_atualizar;
+    private javax.swing.JButton jbt_atualizar;
     private javax.swing.JFormattedTextField jtf_anosafra;
     private javax.swing.JFormattedTextField jtf_datavenda;
     private javax.swing.JTextField jtf_idcliente;
