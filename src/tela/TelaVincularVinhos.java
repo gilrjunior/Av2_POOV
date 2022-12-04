@@ -1,5 +1,10 @@
 package tela;
 
+import conexao.Conexao;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import principal.Principal;
 
 public class TelaVincularVinhos extends javax.swing.JFrame {
@@ -100,6 +105,27 @@ public class TelaVincularVinhos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbt_vincularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_vincularActionPerformed
+        
+        int idcliente = Integer.parseInt(jtf_cliente.getText());
+        String idvinho = jtf_vinho.getText();
+        
+        Socket socket;
+            
+                try{           
+                    socket = Conexao.Conecta();
+                    ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
+                    ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
+
+                    envia.writeInt(3);
+                    envia.writeInt(idcliente);
+                    envia.writeUTF(idvinho);
+
+                    envia.flush();
+
+                }catch (IOException e){
+                    System.out.println("Erro: " + e.getMessage());
+                }        
+        
         Principal.verifica = 1;
     }//GEN-LAST:event_jbt_vincularActionPerformed
 

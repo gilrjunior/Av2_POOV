@@ -4,6 +4,14 @@
  */
 package tela;
 
+import conexao.Conexao;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.table.DefaultTableModel;
 import principal.Principal;
 
 /**
@@ -15,10 +23,17 @@ public class TelaMostrar extends javax.swing.JFrame {
     /**
      * Creates new form TelaMostrar
      */
+    
+    DefaultTableModel dtm_tabela;
+    
     public TelaMostrar() {
         initComponents();
+        
+        dtm_tabela = new DefaultTableModel(null, new String[]{"ID", "Valor", "Descrição", "Tipo da Uva", "Ano da Safra", "Quantidade", "Dia da Venda"});
+        
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,7 +140,49 @@ public class TelaMostrar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBT_BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_BUSCARActionPerformed
-        // TODO add your handling code here:
+        
+        int idcliente = Integer.parseInt(JTF_IDCLIENTE.getText());
+        int qntd = 0;
+        String idproduto;
+        float valor;
+        String descricao;
+        String TipoUva;
+        int AnoSafra;
+        int quantidade;
+        String DataVenda;
+        
+        Socket socket;
+            
+                try{           
+                    socket = Conexao.Conecta();
+                    ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
+                    ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
+
+                    envia.writeInt(4);
+                    envia.writeInt(idcliente);
+                    
+                    envia.flush();
+                    
+                    qntd = recebe.readInt();
+                    
+                    for(int i = 0; i < qntd; i++){
+                        
+                            idproduto = recebe.readUTF();
+                            valor = recebe.readFloat();
+                            descricao = recebe.readUTF();
+                            TipoUva = recebe.readUTF();
+                            AnoSafra = recebe.readInt();
+                            quantidade = recebe.readInt();
+                            DataVenda = recebe.readUTF();
+            
+                            dtm_tabela.addRow(new Object[]{idproduto, valor, descricao, TipoUva, AnoSafra, quantidade, DataVenda});
+            
+                    }
+
+                }catch (IOException e){
+                    System.out.println("Erro: " + e.getMessage());
+                }
+        
     }//GEN-LAST:event_JBT_BUSCARActionPerformed
 
     private void JBT_SAIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_SAIRActionPerformed
