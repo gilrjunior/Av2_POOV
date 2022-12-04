@@ -4,6 +4,12 @@
  */
 package tela;
 
+import conexao.Conexao;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import javax.swing.table.DefaultTableModel;
 import principal.Principal;
 
 /**
@@ -15,8 +21,52 @@ public class TelaMostraClientes extends javax.swing.JFrame {
     /**
      * Creates new form TelaMostraClientes
      */
+    
+    DefaultTableModel dtm_tabela;
+    
     public TelaMostraClientes() {
         initComponents();
+        
+        dtm_tabela = new DefaultTableModel(null, new String[]{"ID", "Nome", "Email", "Endereço", "telefone"});
+        
+        Socket socket;
+        int qntd  = 0;
+        int idcliente;
+        String nome;
+        String email;
+        String endereco;
+        String telefone;
+            
+                try{           
+                    socket = Conexao.Conecta();
+                    ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
+                    ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
+
+                    envia.writeInt(6);
+                    envia.flush();
+                    
+                    qntd = recebe.readInt();
+                    
+                    for(int i = 0; i < qntd; i++){
+                        
+                            idcliente = recebe.readInt();
+                            nome = recebe.readUTF();
+                            email = recebe.readUTF();
+                            endereco = recebe.readUTF();
+                            telefone = recebe.readUTF();
+            
+                            dtm_tabela.addRow(new Object[]{idcliente, nome, email, endereco, telefone});
+            
+                    }
+                    
+                    recebe.close();
+                    envia.close();
+
+                }catch (IOException e){
+                    System.out.println("Erro: " + e.getMessage());
+                }
+        
+        
     }
 
     /**
@@ -31,7 +81,7 @@ public class TelaMostraClientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbt_sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,10 +112,10 @@ public class TelaMostraClientes extends javax.swing.JFrame {
 
         jLabel1.setText("CLIENTES");
 
-        jButton1.setText("SAIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbt_sair.setText("SAIR");
+        jbt_sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbt_sairActionPerformed(evt);
             }
         });
 
@@ -83,7 +133,7 @@ public class TelaMostraClientes extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(155, 155, 155)
-                        .addComponent(jButton1)))
+                        .addComponent(jbt_sair)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -94,16 +144,16 @@ public class TelaMostraClientes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jbt_sair)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_sairActionPerformed
         Principal.verifica = 1;
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbt_sairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,9 +191,9 @@ public class TelaMostraClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbt_sair;
     // End of variables declaration//GEN-END:variables
 }

@@ -121,6 +121,9 @@ public class TelaVincularVinhos extends javax.swing.JFrame {
                     envia.writeUTF(idvinho);
 
                     envia.flush();
+                    
+                    recebe.close();
+                    envia.close();
 
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());

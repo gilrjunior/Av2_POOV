@@ -178,6 +178,9 @@ public class TelaMostrar extends javax.swing.JFrame {
                             dtm_tabela.addRow(new Object[]{idproduto, valor, descricao, TipoUva, AnoSafra, quantidade, DataVenda});
             
                     }
+                    
+                    recebe.close();
+                    envia.close();
 
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());

@@ -7,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -119,7 +120,96 @@ public class Servidor {
                         
                     break;
                     
+                    case 5:
+                        
+                        idcliente = recebe.readInt();
+                        idvinho = recebe.readUTF();
+                        valor = recebe.readFloat();
+                        descricao = recebe.readUTF();
+                        TipoUva = recebe.readUTF();
+                        AnoSafra = recebe.readInt();
+                        quantidade = recebe.readInt();
+                        DataVenda = LocalDate.parse(recebe.readUTF(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        
+                        for(Map.Entry<Cliente, ArrayList<Vinho>> entry : Banco.entrySet()){                                
+                            if(entry.getKey().getIdCliente() == idcliente){ 
+                                ArrayList<Vinho> lista = entry.getValue();
+                                for(Vinho vinho: lista){
+                                    if(vinho.getIdProduto().equalsIgnoreCase(idvinho)){
+                                        
+                                        vinho.setValor(valor);
+                                        vinho.setDescricao(descricao);
+                                        vinho.setTipoDaUva(TipoUva);
+                                        vinho.setAnoDaSafra(AnoSafra);
+                                        vinho.setQuantidade(quantidade);
+                                        vinho.setDiaDaVenda(DataVenda);
+                                        
+                                    }
+                               }   
+
+                            }
+                        }
+                        
+                    break;
                     
+                    case 6:
+                        
+                       envia.writeInt(listaordenadaC.size());
+                       
+                       for(Cliente clientee : listaordenadaC){
+                           
+                           envia.writeInt(clientee.getIdCliente());
+                           envia.writeUTF(clientee.getNome());
+                           envia.writeUTF(clientee.getEmail());
+                           envia.writeUTF(clientee.getEndereco());
+                           envia.writeUTF(clientee.getTelefone());
+                           envia.flush();
+                           
+                       }
+                    
+                    break;
+                    
+                    case 7:
+                        
+                       idvinho = recebe.readUTF();
+                       
+                       for(Vinho vinho : vinhos){
+                           
+                           if(vinho.getIdProduto().equals(idvinho)){
+                               
+                               Period periodo = Period.between(vinho.getDiaDaVenda(), LocalDate.now());
+                               envia.writeInt(periodo.getDays());
+                               
+                           }
+                           
+                       }
+                        
+                    break;
+                    
+                    case 10: //realizar uma busca de vinho específica
+                    
+                        idcliente = recebe.readInt();
+                        idvinho = recebe.readUTF();
+                        
+                        for(Map.Entry<Cliente, ArrayList<Vinho>> entry : Banco.entrySet()){                                
+                            if(entry.getKey().getIdCliente() == idcliente){ 
+                                ArrayList<Vinho> lista = entry.getValue();
+                                for(Vinho vinho: lista){
+                                    if(vinho.getIdProduto().equalsIgnoreCase(idvinho)){
+                                        envia.writeFloat(vinho.getValor());
+                                        envia.writeUTF(vinho.getDescricao());
+                                        envia.writeUTF(vinho.getTipoDaUva());
+                                        envia.writeInt(vinho.getAnoDaSafra());
+                                        envia.writeInt(vinho.getQuantidade());
+                                        envia.writeUTF(vinho.getDiaDaVenda().toString());
+                                        envia.flush();
+                                    }
+                               }   
+
+                            }
+                        }
+                        
+                    break;
                     
                 }
             }

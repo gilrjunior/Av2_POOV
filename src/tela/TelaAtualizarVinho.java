@@ -48,12 +48,15 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jtf_valor = new javax.swing.JTextField();
         jtf_tipouva = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jbt_atualizar = new javax.swing.JToggleButton();
         jtf_idproduto = new javax.swing.JFormattedTextField();
         jtf_datavenda = new javax.swing.JFormattedTextField();
         jtf_anosafra = new javax.swing.JFormattedTextField();
         jtf_qntd = new javax.swing.JFormattedTextField();
         JBT_BUSCAR = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jtf_idcliente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,10 +81,10 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
 
         jLabel8.setText("DATA DA VENDA");
 
-        jToggleButton1.setText("ATUALIZAR");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbt_atualizar.setText("ATUALIZAR");
+        jbt_atualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jbt_atualizarActionPerformed(evt);
             }
         });
 
@@ -117,6 +120,10 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setText("ID CLIENTE");
+
+        jLabel10.setText("INFORME OS ID'S PARA BUSCAR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -138,44 +145,53 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
                                         .addComponent(jtf_anosafra)
                                         .addComponent(jtf_qntd)))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(20, 20, 20)
-                                            .addComponent(jLabel5)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jtf_tipouva, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(27, 27, 27)
-                                            .addComponent(jLabel4)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGap(20, 20, 20)
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jtf_tipouva))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(27, 27, 27)
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addContainerGap(87, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jtf_valor, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jtf_idproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtf_idproduto, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(JBT_BUSCAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(JBT_BUSCAR, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
+                                .addComponent(jtf_valor, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jtf_idcliente))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(189, 189, 189)
                         .addComponent(jLabel1)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGap(68, 68, 68))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(24, 24, 24)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jtf_idcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtf_idproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,23 +220,102 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jtf_datavenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jToggleButton1)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jbt_atualizar)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        
+    private void jbt_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_atualizarActionPerformed
+
         char ID_produto[] = new char[5];
         String idproduto;
+        int idcliente;
+        float valor;
         String descricao;
         String TipoUva;
         int AnoSafra;
         int quantidade;
-        LocalDate DataVenda;
+        String DataVenda;
+        
+        ID_produto = jtf_idproduto.getText().toCharArray();
+           
+        if(ID_produto[2]%2 == 0 || ID_produto[4]%2 != 0){
+            
+            if(ID_produto[2]%2 == 0){
+                JOptionPane.showMessageDialog(null, "O terceiro caractere deve ser um número ímpar", "ERRO", JOptionPane.WARNING_MESSAGE, null);
+            }
+            
+            if(ID_produto[4]%2 != 0){
+                JOptionPane.showMessageDialog(null, "O terceiro caractere deve ser um número par", "ERRO", JOptionPane.WARNING_MESSAGE, null);
+            }
+            
+        }else{
+            
+            idcliente = Integer.parseInt(jtf_idcliente.getText());
+            idproduto = jtf_idproduto.getText();
+            valor = Float.parseFloat(jtf_valor.getText());
+            descricao = txtA_descricao.getText();
+            String linhas[] = descricao.split("\n");;
+            descricao = "";
+            for (String linha : linhas) {
+            
+                descricao = descricao.concat(linha) + " ";
+            }
+            
+            TipoUva = jtf_tipouva.getText();
+            AnoSafra = Integer.parseInt(jtf_anosafra.getText());
+            quantidade = Integer.parseInt(jtf_qntd.getText());
+            DataVenda = jtf_datavenda.getText();
+
+            Socket socket;
+            
+                try{           
+                    socket = Conexao.Conecta();
+                    ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
+                    ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
+
+                    envia.writeInt(5);
+                    envia.writeInt(idcliente);
+                    envia.writeUTF(idproduto);
+                    envia.writeFloat(valor);
+                    envia.writeUTF(descricao);
+                    envia.writeUTF(TipoUva);
+                    envia.writeInt(AnoSafra);
+                    envia.writeInt(quantidade);
+                    envia.writeUTF(DataVenda);
+
+                    envia.flush();
+                    
+                    recebe.close();
+                    envia.close();
+
+                }catch (IOException e){
+                    System.out.println("Erro: " + e.getMessage());
+                }
+        
+            Principal.verifica = 1;
+        }
+    }//GEN-LAST:event_jbt_atualizarActionPerformed
+
+    private void jtf_datavendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_datavendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_datavendaActionPerformed
+
+    private void JBT_BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_BUSCARActionPerformed
+        
+        char ID_produto[] = new char[5];
+        
+        String idproduto;
+        int idcliente;
+        float valor;
+        String descricao;
+        String TipoUva;
+        int AnoSafra;
+        int quantidade;
+        String DataVenda;
         
         ID_produto = jtf_idproduto.getText().toCharArray();
            
@@ -237,21 +332,8 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
         }else{
             
             idproduto = jtf_idproduto.getText();
-            
-            descricao = txtA_descricao.getText();
-            String linhas[] = descricao.split("\n");;
-            descricao = "";
-            for (String linha : linhas) {
-            
-                descricao = descricao.concat(linha) + " ";
-            }
-            
-            TipoUva = jtf_tipouva.getText();
-            AnoSafra = Integer.parseInt(jtf_anosafra.getText());
-            quantidade = Integer.parseInt(jtf_qntd.getText());
-            DataVenda = LocalDate.parse(jtf_datavenda.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
-            
+            idcliente = Integer.parseInt(jtf_idcliente.getText());
+        
             Socket socket;
             
                 try{           
@@ -259,25 +341,33 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
                     ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
                     ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
 
+                    envia.writeInt(10);
+                    envia.writeInt(idcliente);
+                    envia.writeUTF(idproduto);
+                    
+                    envia.flush();
+                                  
+                    valor = recebe.readFloat();
+                    descricao = recebe.readUTF();
+                    TipoUva = recebe.readUTF();
+                    AnoSafra = recebe.readInt();
+                    quantidade = recebe.readInt();
+                    DataVenda = recebe.readUTF();
+                    
+                    jtf_valor.setText(Float.toString(valor));
+                    txtA_descricao.setText(descricao);
+                    jtf_tipouva.setText(TipoUva);
+                    jtf_anosafra.setText(Integer.toString(AnoSafra));
+                    jtf_qntd.setText(Integer.toString(quantidade));
+                    jtf_datavenda.setText(DataVenda);
+                    
+                    recebe.close();
+                    envia.close();
+                    
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());
                 }
-
-            
-            Principal.verifica = 1;
-            
         }
-        
-        
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
-    private void jtf_datavendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_datavendaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_datavendaActionPerformed
-
-    private void JBT_BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_BUSCARActionPerformed
-        
-        
         
         
     }//GEN-LAST:event_JBT_BUSCARActionPerformed
@@ -321,6 +411,7 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBT_BUSCAR;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -328,10 +419,12 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JToggleButton jbt_atualizar;
     private javax.swing.JFormattedTextField jtf_anosafra;
     private javax.swing.JFormattedTextField jtf_datavenda;
+    private javax.swing.JTextField jtf_idcliente;
     private javax.swing.JFormattedTextField jtf_idproduto;
     private javax.swing.JFormattedTextField jtf_qntd;
     private javax.swing.JTextField jtf_tipouva;

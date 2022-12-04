@@ -4,6 +4,12 @@
  */
 package tela;
 
+import conexao.Conexao;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import javax.swing.JOptionPane;
 import principal.Principal;
 
 /**
@@ -29,7 +35,7 @@ public class TelaPeriodo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jtf_idvinho = new javax.swing.JTextField();
+        jtf_idproduto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jbt_sair = new javax.swing.JButton();
@@ -71,7 +77,7 @@ public class TelaPeriodo extends javax.swing.JFrame {
                         .addGap(159, 159, 159)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(jtf_idvinho, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtf_idproduto, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(159, 159, 159)
                         .addComponent(jtf_dias, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -91,7 +97,7 @@ public class TelaPeriodo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtf_idvinho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtf_idproduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbt_buscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,7 +119,49 @@ public class TelaPeriodo extends javax.swing.JFrame {
     }//GEN-LAST:event_jbt_sairActionPerformed
 
     private void jbt_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_buscarActionPerformed
-        // TODO add your handling code here:
+        
+        char ID_produto[] = new char[5];
+        String idproduto;
+        
+        ID_produto = jtf_idproduto.getText().toCharArray();
+           
+        if(ID_produto[2]%2 == 0 || ID_produto[4]%2 != 0){
+            
+            if(ID_produto[2]%2 == 0){
+                JOptionPane.showMessageDialog(null, "O terceiro caractere deve ser um número ímpar", "ERRO", JOptionPane.WARNING_MESSAGE, null);
+            }
+            
+            if(ID_produto[4]%2 != 0){
+                JOptionPane.showMessageDialog(null, "O terceiro caractere deve ser um número par", "ERRO", JOptionPane.WARNING_MESSAGE, null);
+            }
+            
+        }else{
+            
+            idproduto = jtf_idproduto.getText();
+            
+            Socket socket;
+            
+            try{           
+                    socket = Conexao.Conecta();
+                    ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
+                    ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
+
+                    envia.writeInt(7);
+                    envia.writeUTF(idproduto);
+                    
+                    envia.flush();
+                    
+                    jtf_dias.setText(Integer.toString(recebe.readInt()));
+                    
+                    recebe.close();
+                    envia.close();
+
+                }catch (IOException e){
+                    System.out.println("Erro: " + e.getMessage());
+                }                
+        }
+        
+        
     }//GEN-LAST:event_jbt_buscarActionPerformed
 
     /**
@@ -158,6 +206,6 @@ public class TelaPeriodo extends javax.swing.JFrame {
     private javax.swing.JButton jbt_buscar;
     private javax.swing.JButton jbt_sair;
     private javax.swing.JTextField jtf_dias;
-    private javax.swing.JTextField jtf_idvinho;
+    private javax.swing.JTextField jtf_idproduto;
     // End of variables declaration//GEN-END:variables
 }

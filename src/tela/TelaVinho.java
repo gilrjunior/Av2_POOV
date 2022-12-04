@@ -258,6 +258,9 @@ public class TelaVinho extends javax.swing.JFrame {
                     envia.writeUTF(DataVenda);
 
                     envia.flush();
+                    
+                    recebe.close();
+                    envia.close();
 
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());
