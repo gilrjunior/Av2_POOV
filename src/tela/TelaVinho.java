@@ -4,6 +4,11 @@
  */
 package tela;
 
+import conexao.Conexao;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -200,11 +205,12 @@ public class TelaVinho extends javax.swing.JFrame {
         
         char ID_produto[] = new char[5];
         String idproduto;
+        float valor;
         String descricao;
         String TipoUva;
         int AnoSafra;
         int quantidade;
-        LocalDate DataVenda;
+        String DataVenda;
         
         ID_produto = jtf_idproduto.getText().toCharArray();
            
@@ -221,7 +227,7 @@ public class TelaVinho extends javax.swing.JFrame {
         }else{
             
             idproduto = jtf_idproduto.getText();
-            
+            valor = Float.parseFloat(jtf_valor.getText());
             descricao = txtA_descricao.getText();
             String linhas[] = descricao.split("\n");;
             descricao = "";
@@ -233,8 +239,29 @@ public class TelaVinho extends javax.swing.JFrame {
             TipoUva = jtf_tipouva.getText();
             AnoSafra = Integer.parseInt(jtf_anosafra.getText());
             quantidade = Integer.parseInt(jtf_qntd.getText());
-            DataVenda = LocalDate.parse(jtf_datavenda.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            DataVenda = jtf_datavenda.getText();
 
+            Socket socket;
+            
+                try{           
+                    socket = Conexao.Conecta();
+                    ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
+                    ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
+
+                    envia.writeInt(2);
+                    envia.writeUTF(idproduto);
+                    envia.writeFloat(valor);
+                    envia.writeUTF(descricao);
+                    envia.writeUTF(TipoUva);
+                    envia.writeInt(AnoSafra);
+                    envia.writeInt(quantidade);
+                    envia.writeUTF(DataVenda);
+
+                    envia.flush();
+
+                }catch (IOException e){
+                    System.out.println("Erro: " + e.getMessage());
+                }
             
             Principal.verifica = 1;
             

@@ -1,5 +1,10 @@
 package tela;
 
+import conexao.Conexao;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import principal.Principal;
 
 public class TelaCliente extends javax.swing.JFrame {
@@ -134,12 +139,35 @@ public class TelaCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbt_inserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_inserirActionPerformed
+        
         int ID_cliente = Integer.parseInt(jtf_idcliente.getText());
         String nome = jtf_nome.getText();
         String email = jtf_email.getText();
         String telefone = jtf_telefone.getText();
         String endereco = jtf_endereco.getText();
-        Principal.verifica = 1;
+        
+        Socket socket;
+        try{           
+            socket = Conexao.Conecta();
+            ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
+           
+            envia.writeInt(1);
+            envia.writeInt(ID_cliente);
+            envia.writeUTF(nome);
+            envia.writeUTF(email);
+            envia.writeUTF(telefone);
+            envia.writeUTF(endereco);
+                  
+            envia.flush();
+           
+        }catch (IOException e){
+            System.out.println("Erro: " + e.getMessage());
+        }
+        
+        
+        Principal.verifica = 1;     
+        
     }//GEN-LAST:event_jbt_inserirActionPerformed
 
     /**
