@@ -16,7 +16,7 @@ public class Principal {
         int opc = 0;
         int aux = 0;
         
-        while(opc!= 8){
+        while(opc!= 9){
             
         opc = Integer.parseInt(JOptionPane.showInputDialog("MENU \n "+
                                         "1- Cadastrar clientes. \n" +
@@ -26,7 +26,8 @@ public class Principal {
                                         "5- Atualizar os vinhos de um cliente. \n" +
                                         "6- Mostrar todos os clientes em ordem alfabética. \n" +
                                         "7- Apresentar o período compreendido entre o dia da venda e o momento atual \n" +
-                                        "8- SAIR"));
+                                        "8- Mostrar Vinhos cadastrados\n"+
+                                        "9- SAIR"));
                 
         switch(opc){
             
@@ -131,7 +132,24 @@ public class Principal {
                 Principal.verifica = 0;
                 telaperiodo.setVisible(false);  
                 
+            break;
             
+            case 8:
+                
+                TelaVinhosCad telavinhsocad = new TelaVinhosCad();
+                telavinhsocad.setVisible(true);
+                while(opc!= 0){
+                   if(Principal.verifica == 1){
+                       opc = 0;
+                       JOptionPane.showMessageDialog(null, "RETORNANDO AO MENU");
+                   }
+                }
+                Principal.verifica = 0;
+                telavinhsocad.setVisible(false);
+                
+            break;
+                    
+                
         }
             
     }

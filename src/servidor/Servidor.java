@@ -186,6 +186,22 @@ public class Servidor {
                         
                     break;
                     
+                    case 8:
+                        
+                        envia.writeInt(vinhos.size());
+                                for(Vinho vinho: vinhos){ 
+                                    envia.writeUTF(vinho.getIdProduto());
+                                    envia.writeFloat(vinho.getValor());
+                                    envia.writeUTF(vinho.getDescricao());
+                                    envia.writeUTF(vinho.getTipoDaUva());
+                                    envia.writeInt(vinho.getAnoDaSafra());
+                                    envia.writeInt(vinho.getQuantidade());
+                                    envia.writeUTF(vinho.getDiaDaVenda().toString());
+                                    envia.flush();
+                               }
+                        
+                    break;
+                    
                     case 10: //realizar uma busca de vinho específica
                     
                         idcliente = recebe.readInt();
