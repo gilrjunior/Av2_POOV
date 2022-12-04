@@ -55,9 +55,6 @@ public class TelaMostraClientes extends javax.swing.JFrame {
                             endereco = recebe.readUTF();
                             telefone = recebe.readUTF();
                             
-                            System.out.println(idcliente);
-                            System.out.println(nome);
-                            
                             dtm_tabela.addRow(new Object[]{idcliente, nome, email, endereco, telefone});
                                                                            
                     }

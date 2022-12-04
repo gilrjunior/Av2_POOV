@@ -50,9 +50,9 @@ public class TelaVinhosCad extends javax.swing.JFrame {
                     envia.writeInt(8);
                     
                     envia.flush();
-                    
+                                       
                     qntd = recebe.readInt();
-                    
+                                        
                     for(int i = 0; i < qntd; i++){
                         
                             idproduto = recebe.readUTF();
@@ -67,9 +67,6 @@ public class TelaVinhosCad extends javax.swing.JFrame {
             
                     }
                     
-                    socket.close();
-
-
                 }catch (IOException e){
                     System.out.println("Erro: " + e.getMessage());
                 }

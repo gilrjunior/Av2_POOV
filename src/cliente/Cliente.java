@@ -1,7 +1,7 @@
 package cliente;
 
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
     
     private int IdCliente;
     private String nome;
@@ -68,6 +68,13 @@ public class Cliente {
     @Override
     public String toString() {
         return "IdCliente=" + IdCliente + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", endereco=" + endereco;
+    }
+
+    @Override
+    public int compareTo(Cliente c) {
+        
+        return this.getNome().compareToIgnoreCase(c.getNome());
+        
     }
 
     

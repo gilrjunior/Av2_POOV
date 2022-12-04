@@ -6,12 +6,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.text.Collator;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import vinho.Vinho;
@@ -40,7 +42,6 @@ public class Servidor {
                 ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
                
                 opc = recebe.readInt();
-                System.out.println(opc);
                 
                 switch(opc){
                     
@@ -156,6 +157,7 @@ public class Servidor {
                         
                        envia.writeInt(listaordenadaC.size());
                        envia.flush();
+                       Collections.sort(listaordenadaC);
                        
                        for(Cliente clientee : listaordenadaC){
                            
@@ -173,17 +175,26 @@ public class Servidor {
                     
                     case 7:
                         
+                       int verif = 0;
                        idvinho = recebe.readUTF();
                        
                        for(Vinho vinho : vinhos){
                            
                            if(vinho.getIdProduto().equals(idvinho)){
                                
-                               Period periodo = Period.between(vinho.getDiaDaVenda(), LocalDate.parse(LocalDate.now().toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-                               envia.writeInt(periodo.getDays());
+                               Period periodo = vinho.getDiaDaVenda().until(LocalDate.now());
+                               envia.writeUTF(periodo.getYears()+" anos "+periodo.getMonths()+" meses "+periodo.getDays()+" dias ");
+                               
+                               envia.flush();
+                               verif = 1;
                                
                            }
-                           
+                      
+                       }
+                       
+                       if(verif == 0){
+                           envia.writeUTF("Não Encontrado");
+                           envia.flush();
                        }
                        
                        
@@ -191,6 +202,7 @@ public class Servidor {
                     break;
                     
                     case 8:
+                        
                         if(!vinhos.isEmpty()){
                                 envia.writeInt(vinhos.size());
                                 for(Vinho vinho: vinhos){ 
@@ -205,8 +217,8 @@ public class Servidor {
                                }
                         }else{
                              envia.writeInt(0);
-                        }
-                         
+                             envia.flush();
+                        }                       
                         
                     break;
                     

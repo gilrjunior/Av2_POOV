@@ -207,10 +207,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbt_periodoActionPerformed
 
     private void jbt_mostraVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_mostraVActionPerformed
-        this.dispose();
         TelaVinhosCad telavinhsocad = new TelaVinhosCad();
         telavinhsocad.setVisible(true);
-        
+        this.dispose();        
     }//GEN-LAST:event_jbt_mostraVActionPerformed
 
     private void jbt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_sairActionPerformed
