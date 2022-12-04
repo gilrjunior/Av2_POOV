@@ -4,6 +4,11 @@
  */
 package tela;
 
+import conexao.Conexao;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -106,6 +111,11 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
         jtf_qntd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
         JBT_BUSCAR.setText("BUSCAR");
+        JBT_BUSCAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBT_BUSCARActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,6 +252,18 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
             DataVenda = LocalDate.parse(jtf_datavenda.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
             
+            Socket socket;
+            
+                try{           
+                    socket = Conexao.Conecta();
+                    ObjectOutputStream envia = new ObjectOutputStream(socket.getOutputStream());
+                    ObjectInputStream recebe = new ObjectInputStream(socket.getInputStream());
+
+                }catch (IOException e){
+                    System.out.println("Erro: " + e.getMessage());
+                }
+
+            
             Principal.verifica = 1;
             
         }
@@ -252,6 +274,13 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
     private void jtf_datavendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_datavendaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_datavendaActionPerformed
+
+    private void JBT_BUSCARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBT_BUSCARActionPerformed
+        
+        
+        
+        
+    }//GEN-LAST:event_JBT_BUSCARActionPerformed
 
     /**
      * @param args the command line arguments

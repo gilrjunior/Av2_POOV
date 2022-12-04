@@ -1,13 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package conexao;
 
-/**
- *
- * @author User
- */
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
 public class Conexao {
+    
+    public static Socket Conecta() throws IOException{
+        
+        String endereco= "127.0.0.1";
+        int porta = 8000;
+    
+        return new Socket(endereco, porta);
+        
+    }
     
 }

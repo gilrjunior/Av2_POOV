@@ -102,6 +102,7 @@ public class Servidor {
                        for(Map.Entry<Cliente, ArrayList<Vinho>> entry : Banco.entrySet()){                                
                             if(entry.getKey().getIdCliente() == idcliente){ 
                                 ArrayList<Vinho> lista = entry.getValue();
+                                envia.writeInt(lista.size());
                                 for(Vinho vinho: lista){ 
                                     envia.writeUTF(vinho.getIdProduto());
                                     envia.writeFloat(vinho.getValor());
@@ -110,6 +111,7 @@ public class Servidor {
                                     envia.writeInt(vinho.getAnoDaSafra());
                                     envia.writeInt(vinho.getQuantidade());
                                     envia.writeUTF(vinho.getDiaDaVenda().toString());
+                                    envia.flush();
                                }   
 
                             }
