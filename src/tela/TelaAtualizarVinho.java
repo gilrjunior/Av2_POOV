@@ -58,6 +58,7 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jtf_idcliente = new javax.swing.JTextField();
         jbt_atualizar = new javax.swing.JButton();
+        jbt_sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,6 +126,13 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
             }
         });
 
+        jbt_sair.setText("SAIR");
+        jbt_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbt_sairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,7 +188,10 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
                         .addComponent(jLabel10))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
-                        .addComponent(jbt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jbt_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(jbt_sair)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -225,7 +236,9 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
                     .addComponent(jtf_datavenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbt_atualizar)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbt_sair)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -377,6 +390,12 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbt_atualizarActionPerformed
 
+    private void jbt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbt_sairActionPerformed
+        this.dispose();
+        TelaPrincipal tela = new TelaPrincipal();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jbt_sairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -427,6 +446,7 @@ public class TelaAtualizarVinho extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbt_atualizar;
+    private javax.swing.JButton jbt_sair;
     private javax.swing.JFormattedTextField jtf_anosafra;
     private javax.swing.JFormattedTextField jtf_datavenda;
     private javax.swing.JTextField jtf_idcliente;
